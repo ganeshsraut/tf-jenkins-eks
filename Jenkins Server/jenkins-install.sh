@@ -8,7 +8,7 @@ sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
 amazon-linux-extras install epel
 sudo yum upgrade -y
 #sudo amazon-linux-extras install java-openjdk11 -y
-sudo yum install java-17-amazon-corretto 
+sudo yum install java-17-amazon-corretto -y
 sudo yum install jenkins -y
 sudo systemctl enable jenkins
 sudo systemctl start jenkins 

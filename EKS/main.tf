@@ -30,8 +30,8 @@ module "vpc" {
 }
 
 module "eks" {
-  source = "terraform-aws-modules/eks/aws"
-  version = "~> 20.31"
+  source          = "terraform-aws-modules/eks/aws"
+  version         = "~> 20.31"
   cluster_name    = "my-eks-cluster"
   cluster_version = "1.31"
 
@@ -47,7 +47,7 @@ module "eks" {
       desired_size = 2
 
       instance_type = ["t2.medium"]
-      key_name = "ganesh-personal"
+      key_name      = "ganesh-personal"
     }
   }
 
