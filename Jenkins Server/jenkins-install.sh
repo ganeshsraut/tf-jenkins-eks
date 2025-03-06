@@ -11,7 +11,8 @@ sudo yum upgrade -y
 sudo yum install java-17-amazon-corretto 
 sudo yum install jenkins -y
 sudo systemctl enable jenkins
-sudo systemctl start jenkins
+sudo systemctl start jenkins 
+sleep 60
 
 # then install git
 sudo yum install git -y
