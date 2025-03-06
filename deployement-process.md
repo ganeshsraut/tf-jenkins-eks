@@ -38,6 +38,8 @@ Restart jenkins able to get url
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 ## create jenkins login
+
+
 jenkins | jenkins@123
 http://98.80.168.31:8080/
 
