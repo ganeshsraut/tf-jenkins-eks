@@ -25,7 +25,9 @@ terraform apply --auto-approve
 
 # Troubleshoot ec2-user data not run
 cat  /var/log/cloud-init-output.log
+found yum install is stuck because -y not provide in userdata
 
+## Jenkins 2.492.2 is installed
 ## user data location 
 cd /var/lib/cloud/instances/i-01e9557370ba1db11
 
@@ -39,6 +41,10 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 jenkins | jenkins@123
 http://98.80.168.31:8080/
 
-## create jenkins pipeline to deploy EKS cluster
- ## setup global configuration
- Add creds for ACCSS key and Secrete Key of aws user by using Jenkins Secrete text setting on global configuration
+
+## setup global configuration
+ Add creds for AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY of aws user by using Jenkins Secrete text setting on global configuration
+
+## Configure jenkins pipeline to deploy/destroy EKS cluster
+## to apply and deploy add choice parameter in pipeline
+## select Poll SCM schedule to every minute by adding * * * * *
