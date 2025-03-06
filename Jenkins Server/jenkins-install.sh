@@ -13,6 +13,7 @@ sudo yum install jenkins -y
 sudo systemctl enable jenkins
 sudo systemctl start jenkins 
 sleep 60
+sudo systemctl restart jenkins
 
 # then install git
 sudo yum install git -y
