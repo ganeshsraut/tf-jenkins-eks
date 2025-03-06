@@ -40,11 +40,21 @@ pipeline {
                 }
             }
         }
-         stage('Creating/Destroying an EKS Cluster'){
+        stage('Previewing the Infra using Terraform'){
+            steps{
+                script{
+                    dir('EKS'){
+                        sh 'terraform plan'
+                    }
+                    input(message: "Are you sure to proceed?", ok: "Proceed")
+                }
+            }
+        }
+        stage('Creating/Destroying an EKS Cluster'){
             steps{
                 script{
                     dir('EKS') {
-                        sh 'terraform apply --auto-approve'
+                        sh 'terraform $action --auto-approve'
                     }
                 }
             }
