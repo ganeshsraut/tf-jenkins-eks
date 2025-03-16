@@ -1,13 +1,12 @@
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
-  name = "jenkins-vpc"
+  name = "eks_cluster_vpc"
   cidr = var.vpc_cidr
 
-  azs = data.aws_availability_zones.azs.names
-
-  private_subnets = var.private_subnets
+  azs             = data.aws_availability_zones.azs.names
   public_subnets  = var.public_subnets
+  private_subnets = var.private_subnets
 
   enable_dns_hostnames = true
   enable_nat_gateway   = true
@@ -46,7 +45,7 @@ module "eks" {
       max_size     = 3
       desired_size = 2
 
-      instance_type = ["t2.medium"]
+      instance_type = var.instance_type
       key_name      = "ganesh-personal"
     }
   }
@@ -54,5 +53,7 @@ module "eks" {
   tags = {
     Environment = "dev"
     Terraform   = "true"
+    system      = "cloudops"
+    owner       = "ganesh.raut@talentica.com"
   }
 }
