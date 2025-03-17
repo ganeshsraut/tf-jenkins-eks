@@ -60,13 +60,15 @@ pipeline {
                 }
             }
         }
-        stage('Deploying Nginx Application') {
+        stage('Deploying inventory service Application') {
             steps{
                 script{
-                    dir('EKS/ConfigurationFiles') {
+                    dir('environment/dev') {
                         sh 'aws eks update-kubeconfig --name my-eks-cluster'
-                        sh 'kubectl apply -f deployment.yaml'
-                        sh 'kubectl apply -f service.yaml'
+                        sh 'kubectl apply -f namespace.yaml'
+                        sh 'kubectl apply -f inventor-service/deployment.yaml'
+                        sh 'kubectl apply -f inventor-service/service.yaml'
+                        sh 'kubectl apply -f inventor-service/configmap.yaml'
                     }
                 }
             }
