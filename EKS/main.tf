@@ -57,3 +57,20 @@ module "eks" {
     owner       = "ganesh.raut@talentica.com"
   }
 }
+
+resource "aws_eks_access_entry" "example" {
+  cluster_name      = "my-eks-cluster"
+  principal_arn     = "arn:aws:iam::590184134827:user/ganesh.raut@talentica.com"
+  type              = "STANDARD"
+}
+
+resource "aws_eks_access_policy_association" "example" {
+  cluster_name  = "my-eks-cluster"
+  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+  principal_arn = "arn:aws:iam::590184134827:user/ganesh.raut@talentica.com"
+
+  access_scope {
+    type       = "cluster"
+   
+  }
+}
