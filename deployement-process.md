@@ -50,3 +50,6 @@ http://98.80.168.31:8080/
 ## Configure jenkins pipeline to deploy/destroy EKS cluster
 ## to apply and deploy add choice parameter in pipeline
 ## select Poll SCM schedule to every minute by adding * * * * *
+
+
+## Terraform EKS deployment
