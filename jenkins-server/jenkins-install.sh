@@ -19,7 +19,7 @@ sudo systemctl restart jenkins
 sudo yum install git -y
 
 # Install Docker
- sudo yum install docker
+ sudo yum install docker -y
  sudo usermod -aG docker $USER
  sudo service docker start
 
