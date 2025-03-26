@@ -63,12 +63,12 @@ pipeline {
         stage('Deploying inventory service Application') {
             steps{
                 script{
-                    dir('environment/dev') {
+                    dir('environment/dev/') {
                         sh 'aws eks update-kubeconfig --name my-eks-cluster'
                         sh 'kubectl apply -f namespace.yaml'
-                        sh 'kubectl apply -f inventor-service/deployment.yaml'
-                        sh 'kubectl apply -f inventor-service/service.yaml'
-                        sh 'kubectl apply -f inventor-service/configmap.yaml'
+                        sh 'kubectl apply -f inventory-service/deployment.yaml'
+                        sh 'kubectl apply -f inventory-service/service.yaml'
+                        sh 'kubectl apply -f inventory-service/configmap.yaml'
                     }
                 }
             }
@@ -76,7 +76,7 @@ pipeline {
         stage('Deploying Order service Application') {
             steps{
                 script{
-                    dir('environment/dev') {
+                    dir('environment/dev/') {
                         sh 'aws eks update-kubeconfig --name my-eks-cluster'
                         sh 'kubectl apply -f namespace.yaml'
                         sh 'kubectl apply -f order-service/deployment.yaml'
