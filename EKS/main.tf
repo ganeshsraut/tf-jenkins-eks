@@ -44,7 +44,7 @@ module "eks" {
       min_size     = 1
       max_size     = 3
       desired_size = 2
-
+      
       instance_type = var.instance_type
       key_name      = "ganesh-personal"
     }
@@ -59,19 +59,20 @@ module "eks" {
 }
 
 resource "aws_eks_access_entry" "admin" {
-  cluster_name      = "my-eks-cluster"
-  principal_arn     = "arn:aws:iam::590184134827:user/ganesh.raut@talentica.com"
-  type              = "STANDARD"
+  depends_on = [module.eks]
+  cluster_name      = module.eks.cluster_name
+  principal_arn  = "arn:aws:iam::590184134827:user/ganesh.raut@talentica.com"
+  type        = "STANDARD"
 }
 
 resource "aws_eks_access_policy_association" "admin" {
-  cluster_name      = "my-eks-cluster"
+  cluster_name      = module.eks.cluster_name
   policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
   principal_arn = "arn:aws:iam::590184134827:user/ganesh.raut@talentica.com"
   
   access_scope {
     type       = "cluster"
-   
+
   }
   depends_on = [aws_eks_access_entry.admin]
 }
